@@ -31,10 +31,11 @@ public class UserService {
     }
 
     public User updateUser(Integer id, String password){
-        Optional<User> user=userRepository3.findById(id);
-        if(user.isPresent()) return null;
-        user.get().setPassword(password);
-        userRepository3.save(user.get());
-        return user.get();
+        Optional<User> userOptional = userRepository3.findById(id);
+        if(!userOptional.isPresent())return null;
+        User user = userOptional.get();
+        user.setPassword(password);
+        userRepository3.save(user);
+        return user;
     }
 }
