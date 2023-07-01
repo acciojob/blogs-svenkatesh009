@@ -42,4 +42,6 @@ public class ImageService {
         String arr2[] = screenDimensions.split("X");
         return (Integer.valueOf(arr2[0])/Integer.valueOf(arr1[0])) * (Integer.valueOf(arr2[1])/Integer.valueOf(arr1[1])) ;
     }
+
+    ///
 }
