@@ -22,6 +22,14 @@ public class User {
     public User() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public User(String username, String password, String firstName, String lastName) {
         this.username = username;
         this.password = password;

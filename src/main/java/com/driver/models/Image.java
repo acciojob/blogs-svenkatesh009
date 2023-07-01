@@ -20,6 +20,14 @@ public class Image {
     public Image() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Image(String description, String dimensions) {
         this.description = description;
         this.dimensions = dimensions;
