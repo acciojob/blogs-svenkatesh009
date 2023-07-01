@@ -19,7 +19,8 @@ public class UserService {
         User user=new User();
         user.setPassword(password);
         user.setUsername(username);
-
+        user.setFirstName("V");
+        user.setLastName("V");
         userRepository3.save(user);
         return user;
     }
@@ -31,7 +32,7 @@ public class UserService {
 
     public User updateUser(Integer id, String password){
         Optional<User> user=userRepository3.findById(id);
-        if(user.isPresent()) return new User();
+        if(user.isPresent()) return null;
         user.get().setPassword(password);
         userRepository3.save(user.get());
         return user.get();
