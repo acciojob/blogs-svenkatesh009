@@ -21,6 +21,7 @@ public class ImageService {
 
         Optional<Blog> blog=blogRepository2.findById(blogId);
         Image image=new Image();
+        if (!blog.isPresent()) return image;
         image.setDescription(description);
         image.setDimensions(dimensions);
         blog.get().getImageList().add(image);
