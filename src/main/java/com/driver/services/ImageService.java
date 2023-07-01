@@ -17,31 +17,35 @@ public class ImageService {
     ImageRepository imageRepository2;
 
     public Image addImage(Integer blogId, String description, String dimensions){
-        //add an image to the blog
 
-        Optional<Blog> blog=blogRepository2.findById(blogId);
-        Image image=new Image();
-        if (!blog.isPresent()) return image;
+
+        Image image = new Image();
         image.setDescription(description);
         image.setDimensions(dimensions);
-        blog.get().getImageList().add(image);
-        blogRepository2.save(blog.get());
+
+        Blog blog = blogRepository2.findById(blogId).get();
+        image.setBlog(blog);
+        blog.getImageList().add(image);
+        blogRepository2.save(blog);
         return image;
+
+
     }
 
     public void deleteImage(Integer id){
         imageRepository2.deleteById(id);
+
     }
 
     public int countImagesInScreen(Integer id, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
-        Optional<Image> image = imageRepository2.findById(id);
-        if(!image.isPresent())return 0;
-        String str = image.get().getDimensions();
+        Optional<Image> imageOptional = imageRepository2.findById(id);
+        if(imageOptional.isEmpty())return 0;
+        Image image = imageOptional.get();
+        String str = image.getDimensions();
         String arr1[] = str.split("X");
         String arr2[] = screenDimensions.split("X");
         return (Integer.valueOf(arr2[0])/Integer.valueOf(arr1[0])) * (Integer.valueOf(arr2[1])/Integer.valueOf(arr1[1])) ;
-    }
 
-    ///
+    }
 }
